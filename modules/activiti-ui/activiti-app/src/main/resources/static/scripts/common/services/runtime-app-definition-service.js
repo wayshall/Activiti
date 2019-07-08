@@ -50,7 +50,7 @@ activitiApp.service('RuntimeAppDefinitionService', ['$http', '$q', '$location', 
             }
 
             var urls = {
-                editor: baseUrl + '/editor/',
+                editor: baseUrl + '/editor/index.html',
                 identity: baseUrl + '/idm/',
                 workflow: baseUrl + '/workflow/',
                 admin: 'http://localhost:8080/activiti-admin',
