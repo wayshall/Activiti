@@ -13,8 +13,10 @@
 package org.activiti.app.rest.editor;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.activiti.app.service.exception.InternalServerErrorException;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,9 +35,19 @@ public class StencilSetResource {
   protected ObjectMapper objectMapper;
 
   @RequestMapping(value = "/rest/stencil-sets/editor", method = RequestMethod.GET, produces = "application/json")
-  public JsonNode getStencilSetForEditor() {
+  public JsonNode getStencilSetForEditor(HttpServletRequest request) {
+	String language = request.getParameter("language");
+	if (StringUtils.isBlank(language)) {
+		language = "_" + request.getLocale().getLanguage();
+	} else if ("en".equals(language)) {
+		language = ""; // default is english
+	} else {
+		language += "_" + language;
+	}
+	// 先总是使用默认语言
+	language = "";
     try {
-      JsonNode stencilNode = objectMapper.readTree(this.getClass().getClassLoader().getResourceAsStream("stencilset_bpmn.json"));
+      JsonNode stencilNode = objectMapper.readTree(this.getClass().getClassLoader().getResourceAsStream("stencilset_bpmn"+language+".json"));
       return stencilNode;
     } catch (Exception e) {
       log.error("Error reading bpmn stencil set json", e);
