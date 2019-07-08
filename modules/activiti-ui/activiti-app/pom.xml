@@ -86,7 +86,14 @@
       </resource>
     </resources>
     <plugins>
-      <plugin>
+       <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+                <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
+        </plugin>
+      <!-- <plugin>
         <groupId>org.zeroturnaround</groupId>
         <artifactId>jrebel-maven-plugin</artifactId>
         <executions>
@@ -110,7 +117,7 @@
             <com.sun.management.jmxremote.port>4000</com.sun.management.jmxremote.port>
           </systemProperties>
         </configuration>
-      </plugin>
+      </plugin> -->
     </plugins>
     <pluginManagement>
       <plugins>
