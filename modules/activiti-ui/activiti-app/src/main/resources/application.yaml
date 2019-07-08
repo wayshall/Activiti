@@ -1,0 +1,9 @@
+server:
+    contextPath: /activiti-app
+management: 
+    security: 
+        enabled: false
+security: 
+    # ignored: /** # if uaa can not ignore
+    basic: 
+        enabled: false
