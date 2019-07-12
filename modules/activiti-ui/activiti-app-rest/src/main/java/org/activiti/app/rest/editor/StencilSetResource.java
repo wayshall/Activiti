@@ -45,7 +45,7 @@ public class StencilSetResource {
 		language += "_" + language;
 	}
 	// 先总是使用默认语言
-	language = "";
+//	language = "";
     try {
       JsonNode stencilNode = objectMapper.readTree(this.getClass().getClassLoader().getResourceAsStream("stencilset_bpmn"+language+".json"));
       return stencilNode;

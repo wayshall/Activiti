@@ -12,13 +12,18 @@
  */
 package org.activiti.app.conf;
 
-import org.springframework.context.annotation.*;
+import org.onetwo.boot.core.IncludablePropertySourceFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
 @PropertySources({
 	
-	@PropertySource("classpath:/META-INF/activiti-app/activiti-app.properties"),
+	@PropertySource(value = "classpath:/META-INF/activiti-app/activiti-app.properties", factory=IncludablePropertySourceFactory.class),
 	@PropertySource(value = "classpath:activiti-app.properties", ignoreResourceNotFound = true),
 	@PropertySource(value = "file:activiti-app.properties", ignoreResourceNotFound = true),
 
